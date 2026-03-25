@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Auto Responder</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #38bdf8;
+        }
+
+        button {
+            background: #38bdf8;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .account-list {
+            margin-top: 10px;
+        }
+
+        .account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2a3748;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>AutoResponder</h1>
+    <div>
+        <button onclick="showSection('login')">Login</button>
+        <button onclick="showSection('register')">Register</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- LANDING -->
+    <div id="landing">
+        <h2>Automate Your WhatsApp Replies Easily</h2>
+        <p>Link unlimited WhatsApp accounts and control auto responses from one dashboard.</p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="register" class="hidden card">
+        <h2>Create Account</h2>
+        <input type="email" id="regEmail" placeholder="Email">
+        <input type="password" id="regPassword" placeholder="Password">
+        <button onclick="showVerification()">Register</button>
+    </div>
+
+    <!-- EMAIL VERIFICATION -->
+    <div id="verify" class="hidden card">
+        <h2>Email Verification</h2>
+        <input type="text" id="confirmationCode" placeholder="Enter confirmation code">
+        <input type="text" id="username" placeholder="Choose Username">
+        <button onclick="verifyAccount()">Verify & Create Account</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login" class="hidden card">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="hidden">
+        <h2>Dashboard</h2>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Link WhatsApp Account</h3>
+                <p>Connect via QR or API</p>
+                <button onclick="linkWhatsApp()">Connect WhatsApp</button>
+            </div>
+
+            <div class="card">
+                <h3>Auto Response Setup</h3>
+                <input type="text" id="autoReply" placeholder="Auto reply (e.g Hello!)">
+                <button onclick="setAutoResponse()">Set Auto Response</button>
+            </div>
+
+            <div class="card">
+                <h3>Linked Accounts</h3>
+                <div class="account-list" id="accountList"></div>
+                <button onclick="addNewAccount()">Add New Account</button>
+            </div>
+
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Email notifications</p>
+                <p>Security settings</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showSection(sectionId) {
+        const sections = ['landing', 'register', 'verify', 'login', 'dashboard'];
+        sections.forEach(id => {
+            document.getElementById(id).classList.add('hidden');
+        });
+        document.getElementById(sectionId).classList.remove('hidden');
+    }
+
+    function showVerification() {
+        showSection('verify');
+    }
+
+    function verifyAccount() {
+        alert("Account verified!");
+        showSection('login');
+    }
+
+    function login() {
+        alert("Login successful!");
+        showSection('dashboard');
+    }
+
+    function linkWhatsApp() {
+        alert("WhatsApp linking coming soon (requires backend).");
+    }
+
+    function setAutoResponse() {
+        const reply = document.getElementById('autoReply').value;
+        alert("Auto reply set: " + reply);
+    }
+
+    function addNewAccount() {
+        const list = document.getElementById('accountList');
+        const div = document.createElement('div');
+        div.className = 'account-item';
+        div.innerHTML = "WhatsApp Account <button>Remove</button>";
+        list.appendChild(div);
+    }
+</script>
+
+</body>
+</html>
