@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madara_link</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #38bdf8;
+        }
+
+        button {
+            background: #38bdf8;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Madara_link</h1>
+    <div>
+        <button onclick="showLogin()">Login</button>
+        <button onclick="showRegister()">Register</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- LANDING -->
+    <div id="landing">
+        <h2>Automate Your WhatsApp Replies Easily</h2>
+        <p>Link unlimited WhatsApp accounts and control auto responses from one dashboard.</p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="register" class="hidden card">
+        <h2>Create Account</h2>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button onclick="showVerification()">Register</button>
+    </div>
+
+    <!-- EMAIL VERIFICATION -->
+    <div id="verify" class="hidden card">
+        <h2>Email Verification</h2>
+        <input type="text" placeholder="Enter confirmation code">
+        <input type="text" placeholder="Choose Username">
+        <button onclick="enterDashboard()">Verify & Create Account</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login" class="hidden card">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button onclick="enterDashboard()">Login</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="hidden">
+        <h2>Dashboard</h2>
+
+        <div class="dashboard">
+
+            <!-- WHATSAPP LINK -->
+            <div class="card">
+                <h3>Link WhatsApp Account</h3>
+                <p>Connect via QR or API</p>
+                <button>Connect WhatsApp</button>
+            </div>
+
+            <!-- AUTO RESPONSE -->
+            <div class="card">
+                <h3>Auto Response Setup</h3>
+                <input type="text" placeholder="Trigger message (e.g Hi)">
+                <input type="text" placeholder="Auto reply (e.g Hello!)">
+                <button>Add Response</button>
+            </div>
+
+            <!-- MULTIPLE ACCOUNTS -->
+            <div class="card">
+                <h3>Linked Accounts</h3>
+                <p>Account 1 - Active</p>
+                <p>Account 2 - Active</p>
+                <button>Add New Account</button>
+            </div>
+
+            <!-- SETTINGS -->
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Email notifications</p>
+                <p>Security settings</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function showRegister() {
+    hideAll();
+    document.getElementById("register").classList.remove("hidden");
+}
+
+function showLogin() {
+    hideAll();
+    document.getElementById("login").classList.remove("hidden");
+}
+
+function showVerification() {
+    hideAll();
+    document.getElementById("verify").classList.remove("hidden");
+}
+
+function enterDashboard() {
+    hideAll();
+    document.getElementById("dashboard").classList.remove("hidden");
+}
+
+function hideAll() {
+    document.getElementById("landing").classList.add("hidden");
+    document.getElementById("register").classList.add("hidden");
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("verify").classList.add("hidden");
+    document.getElementById("dashboard").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
